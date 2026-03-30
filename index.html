@@ -431,6 +431,9 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
 .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:32px; border-top:1px solid var(--dim); font-size:11px; color:var(--muted); }
 .footer-bottom a { color:var(--muted); text-decoration:none; }
 .footer-bottom a:hover { color:var(--acid); }
+.footer-orynth { display:flex; justify-content:center; padding:40px 0 32px; border-top:1px solid var(--dim); }
+.footer-orynth img { opacity:0.85; transition:opacity 0.2s; }
+.footer-orynth a:hover img { opacity:1; }
 
 /* TOAST */
 .toast { position:fixed; bottom:32px; right:32px; z-index:9998; background:var(--dim); border:1px solid var(--acid); padding:16px 24px; font-size:12px; letter-spacing:1px; transform:translateY(80px); opacity:0; transition:all 0.3s; pointer-events:none; max-width:320px; }
@@ -1045,7 +1048,7 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
       <a href="#hero" class="footer-logo">Art<span>Proof</span></a>
       <p class="footer-tagline">The open protocol for verifying, archiving, and attributing street art. Built by the community. Governed by the DAO.</p>
       <div class="footer-socials">
-        <a class="social-btn" href="#" onclick="showToast('Twitter / X — coming soon');return false;">𝕏</a>
+        <a class="social-btn" href="https://x.com/artproofdotfun" target="_blank" rel="noopener" aria-label="ArtProof on X">𝕏</a>
         <a class="social-btn" href="#" onclick="showToast('Discord — opens in Phase 3');return false;">◈</a>
         <a class="social-btn" href="#" onclick="showToast('GitHub — opens in Phase 3');return false;">⌥</a>
         <a class="social-btn" href="#" onclick="showToast('Mirror — coming soon');return false;">◎</a>
@@ -1054,6 +1057,11 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
     <div class="footer-col"><h4>Protocol</h4><ul><li><a href="#roadmap">Roadmap</a></li><li><a href="#whitepaper">Whitepaper</a></li><li><a href="#" onclick="showToast('GitHub opens in Phase 3');return false;">GitHub</a></li><li><a href="#" onclick="showToast('API Docs launching Phase 5');return false;">API Docs</a></li></ul></div>
     <div class="footer-col"><h4>Community</h4><ul><li><a href="#community">Forum</a></li><li><a href="#" onclick="showToast('Discord opens in Phase 3');return false;">Discord</a></li><li><a href="#about">Team</a></li><li><a href="#partnership">Partners</a></li></ul></div>
     <div class="footer-col"><h4>Resources</h4><ul><li><a href="#howitworks">How It Works</a></li><li><a href="#faq">FAQ</a></li><li><a href="#" onclick="showToast('Press kit available on request');return false;">Press Kit</a></li><li><a href="#" onclick="showToast('Legal docs launching with protocol');return false;">Legal</a></li></ul></div>
+  </div>
+  <div class="footer-orynth">
+    <a href="https://orynth.dev/projects/artproof" target="_blank" rel="noopener" aria-label="Featured on Orynth">
+      <img src="https://orynth.dev/api/badge/artproof?theme=light&style=default" alt="Featured on Orynth" width="260" height="80" loading="lazy" style="display:block;max-width:100%;height:auto;" />
+    </a>
   </div>
   <div class="footer-bottom">
     <span>© 2025 ArtProof Protocol. All rights reserved.</span>
