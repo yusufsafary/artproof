@@ -6,6 +6,56 @@
 <title>ArtProof — Proof the Street</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+/* TICKER */
+.ticker-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 2000;
+  background: var(--acid); color: var(--ink);
+  overflow: hidden; height: 36px; display: flex; align-items: center;
+}
+.ticker-inner {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: tickerScroll 28s linear infinite;
+}
+.ticker-inner span {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 0 48px;
+}
+.ticker-inner span a { color: var(--ink); text-decoration: underline; font-weight: 700; }
+.ticker-sep { color: rgba(8,8,8,0.4); margin: 0 8px; }
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+nav { top: 36px !important; }
+#hero { padding-top: 36px; }
+
+/* LANG TOGGLE */
+.lang-toggle {
+  display: flex; gap: 6px; align-items: center;
+  margin-left: 20px;
+}
+.lang-btn {
+  background: transparent; border: 1px solid rgba(255,255,255,0.2);
+  color: var(--muted); font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; padding: 4px 10px;
+  cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+}
+.lang-btn.active { background: var(--acid); color: var(--ink); border-color: var(--acid); }
+
+/* BILINGUAL: hide/show */
+.en { display: inline; }
+.ja { display: none; }
+body.ja-mode .en { display: none; }
+body.ja-mode .ja { display: inline; }
+
+/* Block-level bilingual */
+.en-block { display: block; }
+.ja-block { display: none; }
+body.ja-mode .en-block { display: none; }
+body.ja-mode .ja-block { display: block; }
+</style>
+<style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --ink:    #080808;
@@ -474,6 +524,14 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
 </head>
 <body>
 
+<!-- TICKER NEWS BAR -->
+<div class="ticker-bar">
+  <div class="ticker-inner" id="tickerInner">
+    <span>🚀 <strong>$PROOF TOKEN LAUNCHING</strong> on <a href="https://kickstart.easya.io/" target="_blank" rel="noopener">kickstart.easya.io</a> <span class="ticker-sep">◆</span> ARTPROOF IS LIVE ON SOLANA <span class="ticker-sep">◆</span> JOIN THE WAITLIST NOW <span class="ticker-sep">◆</span> 🚀 <strong>$PROOFトークン近日ローンチ</strong> → <a href="https://kickstart.easya.io/" target="_blank" rel="noopener">kickstart.easya.io</a> <span class="ticker-sep">◆</span> SOLANAチェーンで稼働中 <span class="ticker-sep">◆</span> ウェイトリスト参加受付中 <span class="ticker-sep">◆</span></span>
+    <span>🚀 <strong>$PROOF TOKEN LAUNCHING</strong> on <a href="https://kickstart.easya.io/" target="_blank" rel="noopener">kickstart.easya.io</a> <span class="ticker-sep">◆</span> ARTPROOF IS LIVE ON SOLANA <span class="ticker-sep">◆</span> JOIN THE WAITLIST NOW <span class="ticker-sep">◆</span> 🚀 <strong>$PROOFトークン近日ローンチ</strong> → <a href="https://kickstart.easya.io/" target="_blank" rel="noopener">kickstart.easya.io</a> <span class="ticker-sep">◆</span> SOLANAチェーンで稼働中 <span class="ticker-sep">◆</span> ウェイトリスト参加受付中 <span class="ticker-sep">◆</span></span>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">Art<span>Proof</span></a>
@@ -490,6 +548,10 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
   <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btnJA" onclick="setLang('ja')">日本語</button>
+  </div>
 </nav>
 
 <!-- MOBILE NAV -->
@@ -507,13 +569,13 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-tag">EST. 2025 — URBAN DOCUMENTATION PROTOCOL</div>
+  <div class="hero-tag"><span class="en">EST. 2026 — URBAN DOCUMENTATION PROTOCOL</span><span class="ja">2026年設立 — アーバン・ドキュメンテーション・プロトコル</span></div>
   <h1 class="hero-title">
     PROOF<br>
     <span class="accent">THE</span><br>
     <span class="line2">STREET.</span>
   </h1>
-  <p class="hero-sub">The first open protocol for verifying, archiving, and attributing street art on-chain. Every wall has a story. We make sure it's never erased.</p>
+  <p class="hero-sub"><span class="en">The first open protocol for verifying, archiving, and attributing street art on-chain. Every wall has a story. We make sure it's never erased.</span><span class="ja">ストリートアートをオンチェーンで検証・アーカイブ・帰属するための初のオープンプロトコル。すべての壁には物語がある。私たちはその記録を永遠に守る。</span></p>
   <div class="hero-actions">
     <a href="#roadmap" class="btn-primary">Explore Roadmap</a>
     <a href="#whitepaper" class="btn-ghost">Read Whitepaper</a>
@@ -531,7 +593,7 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
     <span class="section-eyebrow">Development Timeline</span>
     <h2 class="section-title">ROADMAP</h2>
     <div class="section-line"></div>
-    <p style="color:var(--muted);font-size:13px;max-width:520px;">Click any phase to explore milestones in detail. Drag or scroll to navigate the timeline.</p>
+    <p style="color:var(--muted);font-size:13px;max-width:520px;"><span class="en">Click any phase to explore milestones in detail. Drag or scroll to navigate the timeline.</span><span class="ja">各フェーズをクリックして詳細なマイルストーンをご覧ください。ドラッグまたはスクロールでタイムラインを移動できます。</span></p>
   </div>
   <div class="roadmap-scroll-wrap" id="roadmapWrap">
     <div class="roadmap-track">
@@ -552,35 +614,35 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
       <div class="road-phase current" onclick="openRoadModal(2)">
         <div class="road-num">PHASE 03</div>
         <div class="road-dot"></div>
-        <div class="road-tag-label">IN PROGRESS</div>
+        <div class="road-tag-label">APR 2026</div>
         <div class="road-name">CAPTURE</div>
         <p class="road-brief">Mobile app beta, AI tagging engine, and early adopter onboarding.</p>
       </div>
       <div class="road-phase" onclick="openRoadModal(3)">
         <div class="road-num">PHASE 04</div>
         <div class="road-dot"></div>
-        <div class="road-tag-label">Q3 2025</div>
+        <div class="road-tag-label">Q2 2026</div>
         <div class="road-name">VERIFY</div>
         <p class="road-brief">On-chain verification layer, artist attribution, and dispute resolution.</p>
       </div>
       <div class="road-phase" onclick="openRoadModal(4)">
         <div class="road-num">PHASE 05</div>
         <div class="road-dot"></div>
-        <div class="road-tag-label">Q4 2025</div>
+        <div class="road-tag-label">Q3 2026</div>
         <div class="road-name">NETWORK</div>
         <p class="road-brief">Public archive launch, API access, and partner integrations.</p>
       </div>
       <div class="road-phase" onclick="openRoadModal(5)">
         <div class="road-num">PHASE 06</div>
         <div class="road-dot"></div>
-        <div class="road-tag-label">2026</div>
+        <div class="road-tag-label">Q4 2026</div>
         <div class="road-name">OWNERSHIP</div>
         <p class="road-brief">Artist royalty protocol, collector marketplace, and DAO governance.</p>
       </div>
       <div class="road-phase" onclick="openRoadModal(6)">
         <div class="road-num">PHASE 07</div>
         <div class="road-dot"></div>
-        <div class="road-tag-label">2026+</div>
+        <div class="road-tag-label">2027+</div>
         <div class="road-name">CITY</div>
         <p class="road-brief">Municipal partnerships, preservation mandates, and cultural institutions.</p>
       </div>
@@ -597,15 +659,15 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
     </div>
     <div class="manifesto-quotes">
       <div class="manifesto-quote reveal">
-        <p>Street art is not vandalism. It is the city talking to itself.</p>
+        <p><span class="en">Street art is not vandalism. It is the city talking to itself.</span><span class="ja">ストリートアートは破壊行為ではない。それは都市が自分自身に語りかける声だ。</span></p>
         <span>— THE ARTPROOF MANIFESTO, §1</span>
       </div>
       <div class="manifesto-quote reveal">
-        <p>Every painted wall is a timestamp. Every timestamp deserves to survive.</p>
+        <p><span class="en">Every painted wall is a timestamp. Every timestamp deserves to survive.</span><span class="ja">描かれたすべての壁はタイムスタンプだ。すべてのタイムスタンプは生き残る権利がある。</span></p>
         <span>— THE ARTPROOF MANIFESTO, §2</span>
       </div>
       <div class="manifesto-quote reveal">
-        <p>We don't erase history. We proof it.</p>
+        <p><span class="en">We don't erase history. We proof it.</span><span class="ja">私たちは歴史を消さない。私たちはそれを証明する。</span></p>
         <span>— THE ARTPROOF MANIFESTO, §3</span>
       </div>
     </div>
@@ -850,9 +912,12 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
   <div class="about-grid">
     <div>
       <div class="about-text reveal">
-        <p>ArtProof was founded in 2025 by a collective of street artists, technologists, and cultural archivists who shared one conviction: the most vital art of our time was disappearing without a trace.</p>
-        <p>We spent 18 months in the field — documenting walls in Jakarta, São Paulo, Berlin, and Detroit — before writing a single line of code. The protocol we built emerged directly from that fieldwork.</p>
-        <p>We are not a tech company that discovered art. We are an art community that built technology out of necessity.</p>
+        <p class="en-block">ArtProof was founded in 2026 by a collective of street artists, technologists, and cultural archivists who shared one conviction: the most vital art of our time was disappearing without a trace.</p>
+        <p class="ja-block">ArtProofは2026年、ある共通の信念を持つストリートアーティスト、テクノロジスト、文化アーキビストたちによって設立されました。それは、現代の最も重要なアートが痕跡もなく消え去っているという事実への問題意識でした。</p>
+        <p class="en-block">We spent 18 months in the field — documenting walls in Jakarta, São Paulo, Berlin, and Detroit — before writing a single line of code. The protocol we built emerged directly from that fieldwork.</p>
+        <p class="ja-block">コードを1行も書く前に、私たちはジャカルタ、サンパウロ、ベルリン、デトロイトの壁を記録しながら18ヶ月をフィールドで過ごしました。私たちが構築したプロトコルは、そのフィールドワークから直接生まれました。</p>
+        <p class="en-block">We are not a tech company that discovered art. We are an art community that built technology out of necessity.</p>
+        <p class="ja-block">私たちはアートを発見したテック企業ではありません。必要性からテクノロジーを生み出したアートコミュニティです。</p>
       </div>
       <div class="about-stats reveal">
         <div class="about-stat"><strong>140+</strong><span>Cities Mapped</span></div>
@@ -862,12 +927,12 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
       </div>
     </div>
     <div class="team-grid reveal">
-      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">KR</div><div class="team-front-name">KAI RAMOS</div><div class="team-front-role">Co-Founder & CEO</div></div><div class="team-back"><div class="team-back-name">KAI RAMOS</div><div class="team-back-role">Co-Founder & CEO</div><div class="team-back-quote">"The city is the canvas. We're just making sure no one forgets who painted it."</div></div></div></div>
-      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">SL</div><div class="team-front-name">SUKI LEE</div><div class="team-front-role">Co-Founder & CTO</div></div><div class="team-back"><div class="team-back-name">SUKI LEE</div><div class="team-back-role">Co-Founder & CTO</div><div class="team-back-quote">"Every hash is a heartbeat. The archive never sleeps."</div></div></div></div>
-      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">MD</div><div class="team-front-name">MARCO DIAZ</div><div class="team-front-role">Head of Protocol</div></div><div class="team-back"><div class="team-back-name">MARCO DIAZ</div><div class="team-back-role">Head of Protocol</div><div class="team-back-quote">"Verification is an act of respect. We owe it to every artist."</div></div></div></div>
-      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">AW</div><div class="team-front-name">AMARA WEST</div><div class="team-front-role">Community Lead</div></div><div class="team-back"><div class="team-back-name">AMARA WEST</div><div class="team-back-role">Community Lead</div><div class="team-back-quote">"Our validators are the real editors of this archive."</div></div></div></div>
-      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">PN</div><div class="team-front-name">PRIYA NAIR</div><div class="team-front-role">Head of Partnerships</div></div><div class="team-back"><div class="team-back-name">PRIYA NAIR</div><div class="team-back-role">Head of Partnerships</div><div class="team-back-quote">"Institutions don't preserve culture. People do. We connect them."</div></div></div></div>
-      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">TO</div><div class="team-front-name">TOMO ODA</div><div class="team-front-role">Lead Designer</div></div><div class="team-back"><div class="team-back-name">TOMO ODA</div><div class="team-back-role">Lead Designer</div><div class="team-back-quote">"The interface is invisible when the art speaks louder."</div></div></div></div>
+      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">KR</div><div class="team-front-name">KAI RAMOS</div><div class="team-front-role">Co-Founder & CEO</div></div><div class="team-back"><div class="team-back-name">KAI RAMOS</div><div class="team-back-role">Co-Founder & CEO</div><a href="https://x.com/Elliscpkinssa" target="_blank" rel="noopener" style="color:var(--acid);font-size:11px;letter-spacing:1px;text-decoration:none;margin-bottom:8px;display:block;">𝕏 @Elliscpkinssa</a><div class="team-back-quote">"The city is the canvas. We're just making sure no one forgets who painted it."</div></div></div></div>
+      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">SL</div><div class="team-front-name">SUKI LEE</div><div class="team-front-role">Co-Founder & CTO</div></div><div class="team-back"><div class="team-back-name">SUKI LEE</div><div class="team-back-role">Co-Founder & CTO</div><a href="https://x.com/suki_protocol" target="_blank" rel="noopener" style="color:var(--acid);font-size:11px;letter-spacing:1px;text-decoration:none;margin-bottom:8px;display:block;">𝕏 @suki_protocol</a><div class="team-back-quote">"Every hash is a heartbeat. The archive never sleeps."</div></div></div></div>
+      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">MD</div><div class="team-front-name">MARCO DIAZ</div><div class="team-front-role">Head of Protocol</div></div><div class="team-back"><div class="team-back-name">MARCO DIAZ</div><div class="team-back-role">Head of Protocol</div><a href="https://x.com/marco_ap_dev" target="_blank" rel="noopener" style="color:var(--acid);font-size:11px;letter-spacing:1px;text-decoration:none;margin-bottom:8px;display:block;">𝕏 @marco_ap_dev</a><div class="team-back-quote">"Verification is an act of respect. We owe it to every artist."</div></div></div></div>
+      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">AW</div><div class="team-front-name">AMARA WEST</div><div class="team-front-role">Community Lead</div></div><div class="team-back"><div class="team-back-name">AMARA WEST</div><div class="team-back-role">Community Lead</div><a href="https://x.com/amara_artproof" target="_blank" rel="noopener" style="color:var(--acid);font-size:11px;letter-spacing:1px;text-decoration:none;margin-bottom:8px;display:block;">𝕏 @amara_artproof</a><div class="team-back-quote">"Our validators are the real editors of this archive."</div></div></div></div>
+      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">PN</div><div class="team-front-name">PRIYA NAIR</div><div class="team-front-role">Head of Partnerships</div></div><div class="team-back"><div class="team-back-name">PRIYA NAIR</div><div class="team-back-role">Head of Partnerships</div><a href="https://x.com/priya_ap_biz" target="_blank" rel="noopener" style="color:var(--acid);font-size:11px;letter-spacing:1px;text-decoration:none;margin-bottom:8px;display:block;">𝕏 @priya_ap_biz</a><div class="team-back-quote">"Institutions don't preserve culture. People do. We connect them."</div></div></div></div>
+      <div class="team-card"><div class="team-inner"><div class="team-front"><div class="team-avatar">TO</div><div class="team-front-name">TOMO ODA</div><div class="team-front-role">Lead Designer</div></div><div class="team-back"><div class="team-back-name">TOMO ODA</div><div class="team-back-role">Lead Designer</div><a href="https://x.com/tomo_visual" target="_blank" rel="noopener" style="color:var(--acid);font-size:11px;letter-spacing:1px;text-decoration:none;margin-bottom:8px;display:block;">𝕏 @tomo_visual</a><div class="team-back-quote">"The interface is invisible when the art speaks louder."</div></div></div></div>
     </div>
   </div>
 </section>
@@ -1033,7 +1098,7 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
         <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How much can validators earn?</span><div class="faq-toggle">+</div></div><div class="faq-a">Active validators completing 20+ reviews per week with 95%+ accuracy can earn between 200-800 PROOF tokens monthly in the current emission period. Token value fluctuates with market conditions.</div></div>
       </div>
       <div class="faq-group" id="faq-technical">
-        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Which blockchain does ArtProof use?</span><div class="faq-toggle">+</div></div><div class="faq-a">ArtProof is chain-agnostic at the archive layer, with primary deployment on Ethereum (for governance and tokenomics) and Arweave (for permanent data storage). We are exploring multi-chain expansion in Phase 5.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Which blockchain does ArtProof use?</span><div class="faq-toggle">+</div></div><div class="faq-a">ArtProof is built on Solana for high-speed, low-cost on-chain documentation and governance, paired with Arweave for permanent data storage. Solana's throughput ensures real-time verification at scale. We are exploring multi-chain expansion in Phase 5.</div></div>
         <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Is the protocol open source?</span><div class="faq-toggle">+</div></div><div class="faq-a">Yes. The AP-META schema, verification contracts, and archive indexer are all open source under MIT license. The AI model weights are currently proprietary but will be released under a research license in Phase 5. All smart contracts are audited and publicly verifiable.</div></div>
         <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How does the AI detect duplicate submissions?</span><div class="faq-toggle">+</div></div><div class="faq-a">Our duplicate detection uses perceptual hashing combined with GPS radius filtering. New submissions are compared against all existing entries within a 50-meter radius. Similarity above 85% triggers a manual review flag before the submission enters the standard verification queue.</div></div>
       </div>
@@ -1046,7 +1111,7 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
   <div class="footer-grid">
     <div>
       <a href="#hero" class="footer-logo">Art<span>Proof</span></a>
-      <p class="footer-tagline">The open protocol for verifying, archiving, and attributing street art. Built by the community. Governed by the DAO.</p>
+      <p class="footer-tagline"><span class="en">The open protocol for verifying, archiving, and attributing street art. Built by the community. Governed by the DAO.</span><span class="ja">ストリートアートを検証・アーカイブ・帰属するためのオープンプロトコル。コミュニティが構築し、DAOが統治する。</span></p>
       <div class="footer-socials">
         <a class="social-btn" href="https://x.com/artproofdotfun" target="_blank" rel="noopener" aria-label="ArtProof on X">𝕏</a>
         <a class="social-btn" href="#" onclick="showToast('Discord — opens in Phase 3');return false;">◈</a>
@@ -1058,14 +1123,9 @@ footer { background:#000; padding:80px 80px 40px; border-top:1px solid var(--dim
     <div class="footer-col"><h4>Community</h4><ul><li><a href="#community">Forum</a></li><li><a href="#" onclick="showToast('Discord opens in Phase 3');return false;">Discord</a></li><li><a href="#about">Team</a></li><li><a href="#partnership">Partners</a></li></ul></div>
     <div class="footer-col"><h4>Resources</h4><ul><li><a href="#howitworks">How It Works</a></li><li><a href="#faq">FAQ</a></li><li><a href="#" onclick="showToast('Press kit available on request');return false;">Press Kit</a></li><li><a href="#" onclick="showToast('Legal docs launching with protocol');return false;">Legal</a></li></ul></div>
   </div>
-  <div class="footer-orynth">
-    <a href="https://orynth.dev/projects/artproof" target="_blank" rel="noopener" aria-label="Featured on Orynth">
-      <img src="https://orynth.dev/api/badge/artproof?theme=light&style=default" alt="Featured on Orynth" width="260" height="80" loading="lazy" style="display:block;max-width:100%;height:auto;" />
-    </a>
-  </div>
   <div class="footer-bottom">
-    <span>© 2025 ArtProof Protocol. All rights reserved.</span>
-    <span>Built on <a href="#">Ethereum</a> + <a href="#">Arweave</a></span>
+    <span>© 2026 ArtProof Protocol. All rights reserved.</span>
+    <span>Built on <a href="https://solana.com" target="_blank" rel="noopener">Solana</a> + <a href="#">Arweave</a></span>
     <span>PROOF token is not a security. DYOR.</span>
   </div>
 </footer>
@@ -1211,6 +1271,19 @@ function animateCount(target, duration) {
     el.textContent = Math.floor(start).toLocaleString();
   }, 16);
 }
+/* LANGUAGE TOGGLE */
+function setLang(lang) {
+  if (lang === 'ja') {
+    document.body.classList.add('ja-mode');
+    document.getElementById('btnEN').classList.remove('active');
+    document.getElementById('btnJA').classList.add('active');
+  } else {
+    document.body.classList.remove('ja-mode');
+    document.getElementById('btnEN').classList.add('active');
+    document.getElementById('btnJA').classList.remove('active');
+  }
+}
+
 setTimeout(() => animateCount(24183, 2000), 1200);
 </script>
 </body>
